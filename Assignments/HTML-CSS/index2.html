@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Rental Property</title>
+    <link rel="stylesheet" href="style2.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="gallery">
+            <div class="main-image">
+                <img src="/api/placeholder/800/400" alt="Vacation home view">
+            </div>
+            <div class="thumbnail-grid">
+                <div class="thumbnail">
+                    <img src="/api/placeholder/400/200" alt="Property exterior">
+                </div>
+                <div class="thumbnail">
+                    <img src="/api/placeholder/400/200" alt="Living room">
+                </div>
+                <div class="thumbnail">
+                    <img src="/api/placeholder/400/200" alt="Interior view 1">
+                </div>
+                <div class="thumbnail">
+                    <img src="/api/placeholder/400/200" alt="Interior view 2">
+                </div>
+            </div>
+        </div>
+
+        <nav class="navigation">
+            <a href="#overview" class="nav-item active">Overview</a>
+            <a href="#amenities" class="nav-item">Amenities</a>
+            <a href="#policies" class="nav-item">Policies</a>
+        </nav>
+
+        <div class="property-info">
+            <div class="info-left">
+                <h1>Juneau Vacation Home: Stunning View + Beach Access</h1>
+                <p>Entire home</p>
+                
+                <div style="margin: 15px 0;">
+                    <span class="rating">9.8</span>
+                    <span>Exceptional</span>
+                </div>
+
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <span>🛏️</span>
+                        <span>2 bedrooms</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span>🚽</span>
+                        <span>1 bathroom</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span>👥</span>
+                        <span>Sleeps 4</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span>📏</span>
+                        <span>1155 sq ft</span>
+                    </div>
+                </div>
+
+                <h2 style="margin: 20px 0 10px;">Popular amenities</h2>
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <span>🍖</span>
+                        <span>Barbecue grill</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span>🧺</span>
+                        <span>Washer</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span>🏡</span>
+                        <span>Outdoor Space</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span>🅿️</span>
+                        <span>Parking available</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span>🍳</span>
+                        <span>Kitchen</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span>👕</span>
+                        <span>Dryer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-right">
+                <div class="price-card">
+                    <h2>$134 per night</h2>
+                    <p style="color: #666; margin: 10px 0;">
+                        <span>✓</span> Your dates are available
+                    </p>
+                    <div style="margin: 20px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Total</span>
+                            <span>$543</span>
+                        </div>
+                        <p style="color: #666; font-size: 0.9em;">Total includes fees, not tax</p>
+                    </div>
+                    <button class="book-button">Book now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">Explore the area</h2>
+            <div class="explore-area">
+                <div class="map-container">
+                    <iframe 
+                        src="/api/placeholder/600/240"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; border-radius: 8px;" 
+                        loading="lazy">
+                    </iframe>
+                    <div style="margin-top: 10px;">
+                        <span>Juneau, Alaska</span>
+                        <a href="#" class="link">View in a map</a>
+                    </div>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item">
+                        <span class="location-icon">📍</span>
+                        <div class="location-details">
+                            <span>Auke Bay</span>
+                            <span class="drive-time">6 min drive</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <span class="location-icon">📍</span>
+                        <div class="location-details">
+                            <span>University of Alaska-Southeast</span>
+                            <span class="drive-time">10 min drive</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <span class="location-icon">⛳</span>
+                        <div class="location-details">
+                            <span>Mendenhall Golf Course</span>
+                            <span class="drive-time">14 min drive</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <span class="location-icon">✈️</span>
+                        <div class="location-details">
+                            <span>Juneau, AK (JNU-Juneau Intl.)</span>
+                            <span class="drive-time">14 min drive</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="link" style="margin-top: 15px;">See more about this area</a>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Rooms & beds</h2>
+            <h3>2 bedrooms (sleeps 4)</h3>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-icon">🛏️</div>
+                    <h4>Bedroom 1</h4>
+                    <p>1 Queen Bed</p>
+                </div>
+                <div class="room-card">
+                    <div class="room-icon">🛏️</div>
+                    <h4>Bedroom 2</h4>
+                    <p>1 Twin Bed</p>
+                </div>
+            </div>
+
+            <h3>1 bathroom</h3>
+            <div class="room-card" style="max-width: 300px;">
+                <div class="room-icon">🚿</div>
+                <h4>Full Bathroom</h4>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Spaces</h2>
+            <ul class="spaces-list">
+                <li class="space-item">
+                    <span class="space-icon">🏡</span>
+                    <span>Deck or patio</span>
+                </li>
+                <li class="space-item">
+                    <span class="space-icon">🍳</span>
+                    <span>Kitchen</span>
+                </li>
+                <li class="space-item">
+                    <span class="space-icon">🏠</span>
+                    <span>Balcony</span>
+                </li>
+                <li class="space-item">
+                    <span class="space-icon">🌳</span>
+                    <span>Garden</span>
+                </li>
+            </ul>
+            <a href="#" class="link" style="margin-top: 15px;">See all rooms and beds details</a>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">About this property</h2>
+            
+            <h3 class="property-title">Juneau Vacation Home: Stunning View + Beach Access</h3>
+            <p class="description">
+                Escape to the mountains and experience the great outdoors at this lovely Juneau vacation rental! 
+                Perched on the shore of Lena Cove, this 2-bedroom, 1-bath home is the perfect getaway for those 
+                looking to enjoy a relaxing retreat surrounded by nature. Spend your day fishing for King Salmon, 
+                exploring Lena Beach and the rocky coastline, or hiking the nearby trails. After your outdoor 
+                adventure, kick back on the private deck and admire the breathtaking panoramic views!
+            </p>
+
+            <h4 class="section-header">-- THE PROPERTY --</h4>
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-icon">📏</span>
+                    <span>1,115 Sq Ft | 2 Private Decks | Lena Cove & Mountain Views | 2 Bicycles Provided</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🛏️</span>
+                    <span>Bedroom 1: Queen Bed, Full Floor Mattress | Bedroom 2: Extra Long Twin Bed</span>
+                </div>
+            </div>
+
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-icon">🏠</span>
+                    <span>HOME HIGHLIGHTS: Flat-screen TV, dining table, washer/dryer</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🍳</span>
+                    <span>KITCHEN: Fridge, stove, coffee maker, microwave, cooking basics, toaster, dishware/flatware, trash bags/paper towels, Crockpot</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">ℹ️</span>
+                    <span>GENERAL: Free WiFi, central heating, linens/towels, keyless entry, hair dryer, ceiling fans</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">❗</span>
+                    <span>FAQ: No A/C, stairs required to access</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🅿️</span>
+                    <span>PARKING: Driveway (2 vehicles), RV parking allowed</span>
+                </div>
+            </div>
+
+            <h4 class="section-header">-- THE LOCATION --</h4>
+            <div class="nearby-places">
+                <div class="place-category">
+                    <h4>🌲 GREAT OUTDOORS</h4>
+                    <ul class="place-list">
+                        <li class="place-item">
+                            <span>Lena Cove</span>
+                            <span>on-site</span>
+                        </li>
+                        <li class="place-item">
+                            <span>Mendenhall Glacier</span>
+                            <span>10 miles</span>
+                        </li>
+                        <li class="place-item">
+                            <span>Twin Lakes</span>
+                            <span>13 miles</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="place-category">
+                    <h4>🍽️ LOCAL FARE</h4>
+                    <ul class="place-list">
+                        <li class="place-item">
+                            <span>Forbidden Peak Brewery</span>
+                            <span>5 miles</span>
+                        </li>
+                        <li class="place-item">
+                            <span>The Grind Coffee Company</span>
+                            <span>7 miles</span>
+                        </li>
+                        <li class="place-item">
+                            <span>Zerelda's Bistro</span>
+                            <span>8 miles</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 class="section-header">-- REST EASY WITH US --</h4>
+            <p class="description">
+                Evolve makes it easy to find and book properties you'll never want to leave. You can relax knowing 
+                that our properties will always be ready for you and that we'll answer the phone 24/7. Even better, 
+                if anything is off about your stay, we'll make it right. You can count on our homes and our people to 
+                make you feel welcome--because we know what vacation means to you.
+            </p>
+
+            <h4 class="section-header">-- POLICIES --</h4>
+            <ul class="policies">
+                <li class="policy-item">
+                    <span class="info-icon">🚭</span>
+                    <span>No smoking</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="search-container">
+        <h2>Have a question?</h2>
+        <p>Get instant answers with AI powered search of property information and reviews.</p>
+        <div class="search-box">
+            <input type="text" placeholder="Is there free parking?">
+            <button class="search-button">🔍</button>
+        </div>
+    </div>
+
+    <div class="rules-section">
+        <h2>House Rules</h2>
+        <div class="check-times">
+            <p>Check in after 3:00 PM</p>
+            <p>Minimum age to rent: 25</p>
+        </div>
+        <div class="check-times">
+            <p>Check out before 11:00 AM</p>
+        </div>
+
+        <div class="rules-grid">
+            <div class="rule-item">
+                <span class="rule-icon">👶</span>
+                <div class="rule-content">
+                    <h3>Children</h3>
+                    <p>Children allowed: ages 0-17</p>
+                </div>
+            </div>
+            <div class="rule-item">
+                <span class="rule-icon">🎉</span>
+                <div class="rule-content">
+                    <h3>Events</h3>
+                    <p>No events allowed</p>
+                </div>
+            </div>
+            <div class="rule-item">
+                <span class="rule-icon">🐾</span>
+                <div class="rule-content">
+                    <h3>Pets</h3>
+                    <p>No pets allowed</p>
+                </div>
+            </div>
+            <div class="rule-item">
+                <span class="rule-icon">🚭</span>
+                <div class="rule-content">
+                    <h3>Smoking</h3>
+                    <p>Smoking is not permitted</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="damage-section">
+            <h2>Damage and incidentals</h2>
+            <p>You will be responsible for any damage to the rental property caused by you or your party during your stay.</p>
+        </div>
+
+        <div class="cancellation-section">
+            <h2>Cancellation</h2>
+            <div class="timeline">
+                <div class="timeline-bar">
+                    <div class="timeline-point point-1"></div>
+                    <div class="timeline-point point-2"></div>
+                    <div class="timeline-point point-3"></div>
+                </div>
+                <div class="timeline-labels">
+                    <span>Today</span>
+                    <span>Nov 4</span>
+                    <span>Check-in</span>
+                </div>
+            </div>
+            <div class="refund-details">
+                <div class="refund-period">
+                    <h3>Before Nov 4</h3>
+                    <p>Cancel your reservation before Nov 4 at 11:59 PM, and you'll get a full refund. Times are based on the property's local time.</p>
+                </div>
+                <div class="refund-period">
+                    <h3>After Nov 4</h3>
+                    <p>After that, you won't get a refund.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <section class="important-info">
+            <h2>Important information</h2>
+            <ul class="info-list">
+                <li>Extra-person charges may apply and vary depending on property policy</li>
+                <li>Government-issued photo identification and a credit card, debit card, or cash deposit may be required at check-in for incidental charges</li>
+                <li>Special requests are subject to availability upon check-in and may incur additional charges; special requests cannot be guaranteed</li>
+                <li>Onsite parties or group events are strictly prohibited</li>
+                <li>Host has indicated there is a carbon monoxide detector on the property</li>
+                <li>Host has indicated there is a smoke detector on the property</li>
+                <li>Safety features at this property include a fire extinguisher and a first aid kit</li>
+            </ul>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently asked questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Is Juneau Vacation Home: Stunning View + Beach Access pet-friendly?</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What time is check-in at Juneau Vacation Home: Stunning View + Beach Access?</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What time is check-out at Juneau Vacation Home: Stunning View + Beach Access?</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Where is Juneau Vacation Home: Stunning View + Beach Access located?</div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="rating-header">
+                <span class="rating-number">9.8/10</span>
+                <div>
+                    <div class="rating-label">Exceptional</div>
+                    <div class="review-count">24 reviews ℹ️</div>
+                </div>
+            </div>
+
+            <h2>Recent reviews</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-rating">10/10 Excellent</div>
+                    <p class="review-text">A very cozy home for the two of us in a quiet area NW of town. Beautiful water view. We enjoyed the art, read up in it and visited the...</p>
+                    <a href="#" class="read-more">Read more</a>
+                    <div class="review-author">Kyle G.</div>
+                    <div class="review-date">Sep 25, 2024</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">10/10 Excellent</div>
+                    <p class="review-text">The cottage was just as the pictures and description stated. Nice quiet area and great view of the cove.</p>
+                    <a href="#" class="read-more">Read more</a>
+                    <div class="review-author">Cindy B.</div>
+                    <div class="review-date">Sep 23, 2024</div>
+                </div>
+            </div>
+
+            <a href="#" class="see-all-reviews">See all 24 reviews</a>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <section class="faq-section">
+            <h2>Frequently asked questions</h2>
+            <div class="faq-list">
+                <button class="faq-item">Is Juneau Vacation Home: Stunning View + Beach Access pet-friendly?</button>
+                <button class="faq-item">What time is check-in at Juneau Vacation Home: Stunning View + Beach Access?</button>
+                <button class="faq-item">What time is check-out at Juneau Vacation Home: Stunning View + Beach Access?</button>
+                <button class="faq-item">Where is Juneau Vacation Home: Stunning View + Beach Access located?</button>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="rating-container">
+                <div class="rating">9.8/10</div>
+                <div class="rating-label">Exceptional</div>
+                <div class="review-count">24 reviews ℹ️</div>
+                <div class="review-info">Reviews are verified unless labeled otherwise.</div>
+            </div>
+
+            <h2>Recent reviews</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-rating">10/10 Excellent</div>
+                    <p class="review-text">A very cozy home for the two of us in a quiet area NW of town. Beautiful water view. We enjoyed the art, read up in it and visited the...</p>
+                    <a href="#" class="read-more">Read more</a>
+                    <div class="review-author">Kyle G.</div>
+                    <div class="review-date">Sep 25, 2024</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">10/10 Excellent</div>
+                    <p class="review-text">The cottage was just as the pictures and description stated. Nice quiet area and great view of the cove.</p>
+                    <a href="#" class="read-more">Read more</a>
+                    <div class="review-author">Cindy B.</div>
+                    <div class="review-date">Sep 23, 2024</div>
+                </div>
+            </div>
+
+            <a href="#" class="see-all-reviews">See all 24 reviews</a>
+        </section>
+
+        <section class="host-section">
+            <h2>About the host</h2>
+            <div class="host-name">Hosted by Evolve</div>
+            
+            <div class="languages">
+                <div class="languages-label">Languages:</div>
+                <div class="languages-list">English, French, German, Spanish</div>
+            </div>
+
+            <a href="#" class="contact-host">Contact host</a>
+        </section>
+    </div>
+</body>
+</html>

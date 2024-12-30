@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Modal</title>
+    <style>
+        /* Main container */
+        .photo {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .photo-count {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 60%;
+            max-height: 65%;
+            background-color: #1c1c1c;
+            /* background: none; */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .modal img {
+            width: 100%;
+            /* height: auto; */
+            border-radius: 8px;
+        }
+
+        /* Close button */
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: rgba(247, 233, 233,.8);
+            background: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Navigation buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .prev:disabled,
+        .next:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            opacity: .5;
+        }
+
+        /* Image title and counter */
+        #modalTitle {
+            margin-top: 10px;
+            font-size: 18px;
+            background-color: #070707;
+        }
+
+        .image-counter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="photo" onclick="openModal()">
+    <img src="https://images.pexels.com/photos/210464/pexels-photo-210464.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gallery Thumbnail">
+    <div class="photo-count">30+</div>
+</div>
+
+<div class="modal" id="galleryModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <button class="prev" id="prevButton" onclick="prevImage()">&#10094;</button>
+        <button class="next" id="nextButton" onclick="nextImage()">&#10095;</button>
+        <img id="modalImage" src="" alt="Gallery Image">
+        <div class="modal-title" id="modalTitle">Juneau Vacation Rental | 2BR | 1BA | 1,115 Sq Ft | Stairs Required</div>
+        <div class="image-counter" id="imageCounter">1/31</div>
+    </div>
+</div>
+
+<script>
+    // Array with 31 manually added image URLs
+    const images = [
+    "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/674580/pexels-photo-674580.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/4112236/pexels-photo-4112236.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/16293659/pexels-photo-16293659/free-photo-of-cat-lying-down-on-windowsill.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "https://images.pexels.com/photos/1127119/pexels-photo-1127119.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/20849980/pexels-photo-20849980/free-photo-of-interior-of-an-old-office.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/21328136/pexels-photo-21328136/free-photo-of-table-and-chairs-in-house.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/3768146/pexels-photo-3768146.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/238385/pexels-photo-238385.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1022936/pexels-photo-1022936.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/731082/pexels-photo-731082.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2100238/pexels-photo-2100238.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2098405/pexels-photo-2098405.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/792032/pexels-photo-792032.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2506990/pexels-photo-2506990.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/453201/pexels-photo-453201.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1406282/pexels-photo-1406282.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2079695/pexels-photo-2079695.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/688835/pexels-photo-688835.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/920025/pexels-photo-920025.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/89184/pexels-photo-89184.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1612351/pexels-photo-1612351.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/250659/pexels-photo-250659.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/160755/kittens-cats-foster-playing-160755.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/775219/pexels-photo-775219.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/20360855/pexels-photo-20360855/free-photo-of-sunflowers-in-glass-vase-by-windows-in-house.jpeg?auto=compress&cs=tinysrgb&w=600"
+    ];
+
+    let currentIndex = 0;
+
+    function openModal() {
+        const modal = document.getElementById('galleryModal');
+        modal.classList.add('show');
+        updateModalImage();
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('galleryModal');
+        modal.classList.remove('show');
+    }
+
+    function nextImage() {
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            updateModalImage();
+        }
+    }
+
+    function prevImage() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateModalImage();
+        }
+    }
+
+    function updateModalImage() {
+        const modalImage = document.getElementById('modalImage');
+        const imageCounter = document.getElementById('imageCounter');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+
+        modalImage.src = images[currentIndex];
+        imageCounter.textContent = `${currentIndex + 1}/${images.length}`;
+
+        // Disable prev button if at the start
+        prevButton.disabled = currentIndex === 0;
+
+        // Disable next button if at the end
+        nextButton.disabled = currentIndex === images.length - 1;
+    }
+</script>
+
+</body>
+</html>

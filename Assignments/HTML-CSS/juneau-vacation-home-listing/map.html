@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .map-preview {
+            font-family: Arial, sans-serif;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .map-preview .map-image {
+            width: 100%;
+            position: relative;
+        }
+
+        .map-preview .map-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .map-preview .map-info {
+            padding: 16px;
+            background-color: white;
+        }
+
+        .map-preview .location-name {
+            font-size: 14px;
+            color: #222;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .map-preview .view-map-link {
+            font-size: 14px;
+            color: #006AFF;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .map-preview {
+    font-family: Arial, sans-serif;
+    /* max-width: 400px; */
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.map-preview .map-image  {
+    /* width: 100%;
+    height: 200px; */
+    /* background:  #B5EAD7; */
+    position: relative;
+    /* overflow: hidden; */
+}
+.map-preview .map-image img{
+    width: 100%;
+    height: 200px;
+}
+.map-preview .map-info {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    font-size: 12px;
+    background-color: #faf6f6;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: first baseline;
+    gap: 4px;
+    width: 100%;
+    /* height: 50px; */
+}
+    </style>
+</head>
+<body>
+    <div class="map-preview">
+        <div class="map-image">
+            <img src="/api/placeholder/400/200" alt="Map of Juneau, Alaska">
+        </div>
+        <div class="map-info">
+            <div class="location-name">Juneau, Alaska</div>
+            <a href="#" class="view-map-link">View in a map</a>
+        </div>
+    </div>
+</body>
+</html>

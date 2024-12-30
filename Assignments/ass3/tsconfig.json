@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2018",                                  /* Modern enough for Node.js while maintaining compatibility */
+    "lib": ["es2018", "esnext.asynciterable"],          /* Include necessary libraries for async/await and Node.js */
+    
+    /* Modules */
+    "module": "commonjs",                                /* Node.js uses CommonJS modules */
+    "moduleResolution": "node",                          /* Use Node.js module resolution strategy */
+    "rootDir": "./src",                                  /* Source files are in src directory */
+    "outDir": "./dist",                                  /* Compiled files will go to dist directory */
+    "resolveJsonModule": true,                           /* Enable importing JSON files (for our hotel data) */
+    
+    /* JavaScript Support */
+    "allowJs": true,                                     /* Allow JavaScript files to be compiled */
+    "checkJs": true,                                     /* Enable error reporting in JavaScript files */
+    
+    /* Emit */
+    "sourceMap": true,                                   /* Generate source maps for debugging */
+    "removeComments": true,                              /* Remove comments in output files */
+    "noEmitOnError": true,                               /* Don't emit files if there are errors */
+    
+    /* Interop Constraints */
+    "esModuleInterop": true,                             /* Better interop between CommonJS and ES modules */
+    "forceConsistentCasingInFileNames": true,            /* Ensure consistent casing in imports */
+    
+    /* Type Checking */
+    "strict": true,                                      /* Enable all strict type checking options */
+    "noImplicitAny": true,                              /* Raise error on expressions and declarations with implied 'any' type */
+    "strictNullChecks": true,                           /* Enable strict null checks */
+    "strictFunctionTypes": true,                        /* Enable strict checking of function types */
+    "noUnusedLocals": true,                            /* Report errors on unused locals */
+    "noUnusedParameters": true,                         /* Report errors on unused parameters */
+    "noImplicitReturns": true,                         /* Report error when not all code paths in function return a value */
+    "noFallthroughCasesInSwitch": true,                /* Enable error reporting for fallthrough cases in switch */
+    
+    /* Completeness */
+    "skipLibCheck": true,                               /* Skip type checking of declaration files */
+    
+    /* Additional Options */
+    "baseUrl": "./src",                                /* Base directory to resolve non-relative module names */
+    "paths": {
+      "@/*": ["*"]                                     /* Enable path aliases for cleaner imports */
+    }
+  },
+  "include": [
+    "src/**/*",                                        /* Include all files in src directory */
+    "__tests__/**/*"                                   /* Include test files */
+  ],
+  "exclude": [
+    "node_modules",                                    /* Exclude node_modules */
+    "dist"                                            /* Exclude compiled output */
+  ]
+}

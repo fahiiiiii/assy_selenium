@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- HTML -->
+<div class="location-selector" id="locationButton">
+    <span>🌐</span>
+    <span id="selectedRegion">United States</span>
+    <span id="selectedCurrency">(USD)</span>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Display settings</h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="warning-message">
+                <p>Changing your region could change your rewards program</p>
+                <p class="subtitle">To stay with your current rewards program keep your region the same. One Key is currently only available in select regions.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="regionSelect">Region</label>
+                <select id="regionSelect" class="select-field">
+                    <option value="US" data-currency="USD">United States</option>
+                    <option value="PT" data-currency="EUR">Portugal</option>
+                    <option value="UK" data-currency="GBP">United Kingdom</option>
+                    <option value="FR" data-currency="EUR">France</option>
+                    <option value="DE" data-currency="EUR">Germany</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Currency</label>
+                <div id="currencyDisplay" class="currency-display"></div>
+            </div>
+            
+            <button id="saveButton" class="save-button">Save</button>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div id="confirmationModal" class="modal confirmation-modal">
+    <div class="modal-content confirmation-content">
+        <div class="confirmation-message">
+            <div class="check-icon">✓</div>
+            <h3>Region Updated</h3>
+            <p id="confirmationText"></p>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Existing styles remain the same */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.confirmation-modal .modal-content {
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.confirmation-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.check-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.confirmation-message h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.confirmation-message p {
+    margin: 0;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Add rest of the existing styles here */
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const regionConfig = {
+        'US': {
+            name: 'United States',
+            currency: 'USD'
+        },
+        'PT': {
+            name: 'Portugal',
+            currency: 'EUR'
+        },
+        'UK': {
+            name: 'United Kingdom',
+            currency: 'GBP'
+        },
+        'FR': {
+            name: 'France',
+            currency: 'EUR'
+        },
+        'DE': {
+            name: 'Germany',
+            currency: 'EUR'
+        }
+    };
+
+    let currentState = {
+        region: 'US',
+        currency: 'USD'
+    };
+
+    // Get DOM elements
+    const locationButton = document.getElementById('locationButton');
+    const settingsModal = document.getElementById('settingsModal');
+    const confirmationModal = document.getElementById('confirmationModal');
+    const closeButton = document.querySelector('.close');
+    const saveButton = document.getElementById('saveButton');
+    const regionSelect = document.getElementById('regionSelect');
+    const currencyDisplay = document.getElementById('currencyDisplay');
+    const selectedRegionSpan = document.getElementById('selectedRegion');
+    const selectedCurrencySpan = document.getElementById('selectedCurrency');
+    const confirmationText = document.getElementById('confirmationText');
+
+    function updateCurrencyDisplay(regionCode) {
+        const currency = regionConfig[regionCode].currency;
+        currencyDisplay.textContent = currency;
+        return currency;
+    }
+
+    function updateMainDisplay(regionCode) {
+        const region = regionConfig[regionCode];
+        selectedRegionSpan.textContent = region.name;
+        selectedCurrencySpan.textContent = `(${region.currency})`;
+    }
+
+    function showConfirmationModal(regionCode) {
+        const regionName = regionConfig[regionCode].name;
+        confirmationText.textContent = `Your current region is ${regionName}`;
+        confirmationModal.style.display = 'block';
+
+        // Auto-hide confirmation after 2 seconds
+        setTimeout(() => {
+            confirmationModal.style.display = 'none';
+        }, 2000);
+    }
+
+    // Show settings modal
+    locationButton.addEventListener('click', function() {
+        settingsModal.style.display = 'block';
+        regionSelect.value = currentState.region;
+        updateCurrencyDisplay(currentState.region);
+    });
+
+    // Close settings modal
+    closeButton.addEventListener('click', () => settingsModal.style.display = 'none');
+    
+    // Close modals when clicking outside
+    window.addEventListener('click', (event) => {
+        if (event.target === settingsModal) {
+            settingsModal.style.display = 'none';
+        }
+        if (event.target === confirmationModal) {
+            confirmationModal.style.display = 'none';
+        }
+    });
+
+    // Region change handler
+    regionSelect.addEventListener('change', function() {
+        updateCurrencyDisplay(this.value);
+    });
+
+    // Save button handler
+    saveButton.addEventListener('click', function() {
+        const newRegion = regionSelect.value;
+        const newCurrency = regionConfig[newRegion].currency;
+
+        // Update current state
+        currentState = {
+            region: newRegion,
+            currency: newCurrency
+        };
+
+        // Update main display
+        updateMainDisplay(newRegion);
+
+        // Close settings modal
+        settingsModal.style.display = 'none';
+
+        // Show confirmation modal
+        showConfirmationModal(newRegion);
+
+        // Dispatch custom event
+        const event = new CustomEvent('regionChanged', {
+            detail: {
+                region: regionConfig[newRegion].name,
+                regionCode: newRegion,
+                currency: newCurrency
+            }
+        });
+        document.dispatchEvent(event);
+    });
+
+    // Initialize display
+    updateMainDisplay(currentState.region);
+});
+</script>
+</body>
+</html>

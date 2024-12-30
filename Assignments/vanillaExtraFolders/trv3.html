@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelers</title>
+    <style>
+        /* Main container */
+        .booking-container {
+            width: 300px;
+            margin: 50px auto;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        /* Travelers input */
+        .travelers-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            border-radius: 4px;
+            color: #535252;
+        }
+
+        .num-display {
+            font-size: large;
+        }
+
+        /* Travelers dropdown */
+        .travelers-dropdown {
+            display: none;
+            /* Initially hidden */
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        /* Show dropdown when .hidden class is removed */
+        .travelers-dropdown.show {
+            display: block;
+        }
+
+        .counter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #535252;
+        }
+        .counter-subtitle{
+            font-size: small;
+            opacity: .7;
+        }
+
+        .counter-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .decrement,
+        .increment {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 16px;
+            text-align: center;
+            line-height: 28px;
+        }
+
+        .increment {
+            margin-left: 5px;
+        }
+
+        .decrement {
+            margin-right: 5px;
+        }
+
+        .decrement:disabled,
+        .increment:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        .done-btn {
+            width: 100%;
+            padding: 8px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .done-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .pet-option {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            color: #535252;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .pet-option input[type="checkbox"] {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="booking-container">
+        <!-- Travelers input -->
+        <div class="travelers-input" onclick="toggleTravelerInput()">
+            <small>Travelers</small>
+            <div class="num-display">2 travelers</div>
+        </div>
+
+        <!-- Travelers dropdown -->
+        <div class="travelers-dropdown" id="travelersDropdown">
+            <div class="counter-row">
+                <div> Adults </div>
+                <div class="counter-controls">
+                    <button class="decrement" id="adult-decrement" onclick="decrementAdults()" disabled>-</button>
+                    <span id="adults-count"> 1 </span>
+                    <button class="increment" onclick="incrementAdults()">+</button>
+                </div>
+            </div>
+            <div class="counter-row">
+                <div> Children 
+                    <div class="counter-subtitle">Ages 0 to 17</div>
+                </div>
+                <div class="counter-controls">
+                    <button class="decrement" id="child-decrement" onclick="decrementChildren()" disabled>-</button>
+                    <span id="children-count"> 0 </span>
+                    <button class="increment" onclick="incrementChildren()">+</button>
+                </div>
+            </div>
+
+            <!-- Traveling with pet option -->
+            <div class="pet-option" id="petOption">
+                <input type="checkbox" id="travelWithPet" onclick="togglePetOptionOpacity()">
+                <label for="travelWithPet">I am traveling with pet</label>
+            </div>
+
+            <button class="done-btn" onclick="updateTravelerDisplay()">Done</button>
+        </div>
+    </div>
+
+    <script>
+        let adultCount = 1;
+        let childCount = 0;
+
+        function toggleTravelerInput() {
+            // Toggle the 'show' class instead of 'hidden'
+            document.getElementById('travelersDropdown').classList.toggle('show');
+        }
+
+        function incrementAdults() {
+            adultCount++;
+            updateAdultCount();
+        }
+
+        function decrementAdults() {
+            if (adultCount > 1) {
+                adultCount--;
+                updateAdultCount();
+            }
+        }
+
+        function incrementChildren() {
+            childCount++;
+            updateChildCount();
+        }
+
+        function decrementChildren() {
+            if (childCount > 0) {
+                childCount--;
+                updateChildCount();
+            }
+        }
+
+        function updateAdultCount() {
+            document.getElementById('adults-count').textContent = adultCount;
+            document.getElementById('adult-decrement').disabled = adultCount <= 1;
+        }
+
+        function updateChildCount() {
+            document.getElementById('children-count').textContent = childCount;
+            document.getElementById('child-decrement').disabled = childCount <= 0;
+        }
+
+        function updateTravelerDisplay() {
+            const totalTravelers = adultCount + childCount;
+            document.querySelector('.num-display').textContent = `${totalTravelers} traveler${totalTravelers > 1 ? 's' : ''}`;
+            document.getElementById('travelersDropdown').classList.remove('show');
+        }
+
+        function togglePetOptionOpacity() {
+            const petOption = document.getElementById('petOption');
+            petOption.style.opacity = document.getElementById('travelWithPet').checked ? '1' : '0.6';
+        }
+    </script>
+</body>
+
+</html>

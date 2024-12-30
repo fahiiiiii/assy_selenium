@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .search-container {
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 32px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  font-size: 18px;
+  padding: 12px 16px;
+  border-radius: 24px;
+  border: none;
+  outline: none;
+}
+
+.search-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 16px;
+  cursor: pointer;
+}
+
+.search-button img {
+  width: 24px;
+  height: 24px;
+}
+    </style>
+    <div class="search-container">
+        <h2>Have a question?</h2>
+        <div class="search-bar">
+          <input type="text" placeholder="Ask a question" />
+          <button class="search-button">
+            <img src="search-icon.svg" alt="Search" />
+          </button>
+        </div>
+      </div>
+</body>
+</html>

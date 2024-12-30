@@ -1,0 +1,245 @@
+<style>
+    .location-selector {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .location-selector:hover {
+        background-color: #f5f5f5;
+    }
+    
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+    
+    .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 8px;
+        position: relative;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-header {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .modal-header h2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    .close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+    }
+    
+    .warning-message {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    .form-group {
+        margin: 20px 0;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+    
+    .form-group select {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    #saveButton {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    
+    #saveButton:hover {
+        background-color: #0056b3;
+    }
+    
+    .confirmation-modal .modal-content {
+        text-align: center;
+        padding: 30px;
+        max-width: 400px;
+    }
+    
+    .check-icon {
+        color: #28a745;
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+    
+    .currency-display {
+        margin-top: 8px;
+        padding: 8px 12px;
+        background-color: #f8f9fa;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    </style>
+    
+    <div class="location-selector" id="locationButton">
+        <span>🌐</span>
+        <span id="selectedRegion">United States</span>
+        <span id="selectedCurrency">(USD)</span>
+    </div>
+    
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="traveler-counter">
+                <div class="counter-section">
+                    <div class="counter-row">
+                        <div class="counter-label">
+                            Adults
+                        </div>
+                        <div class="counter-controls">
+                            <button class="counter-button" onclick="decrementCount('adults')" id="adults-minus">−</button>
+                            <span class="counter-value" id="adults-count">1</span>
+                            <button class="counter-button" onclick="incrementCount('adults')" id="adults-plus">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="counter-row">
+                        <div class="counter-label">
+                            Children
+                            <div class="counter-subtitle">Ages 0 to 17</div>
+                        </div>
+                        <div class="counter-controls">
+                            <button class="counter-button" onclick="decrementCount('children')" id="children-minus" disabled>−</button>
+                            <span class="counter-value" id="children-count">0</span>
+                            <button class="counter-button" onclick="incrementCount('children')" id="children-plus">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary">
+                    <span id="total-travelers">1 traveler</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="confirmationModal" class="modal confirmation-modal">
+        <div class="modal-content">
+            <div class="check-icon">✓</div>
+            <h3>Region Updated</h3>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // DOM Elements
+        const locationButton = document.getElementById('locationButton');
+        const settingsModal = document.getElementById('settingsModal');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const closeButton = document.querySelector('.close');
+        const saveButton = document.getElementById('saveButton');
+        const regionSelect = document.getElementById('regionSelect');
+        const currencyDisplay = document.getElementById('currencyDisplay');
+        const selectedRegion = document.getElementById('selectedRegion');
+        const selectedCurrency = document.getElementById('selectedCurrency');
+    
+        // Currency mapping
+        const currencyMap = {
+            'United States': 'USD',
+            'Portugal': 'EUR',
+            'United Kingdom': 'GBP',
+            'France': 'EUR',
+            'Germany': 'EUR'
+        };
+    
+        // Event Listeners
+        locationButton.addEventListener('click', () => {
+            settingsModal.style.display = 'block';
+            // Set current values in modal
+            regionSelect.value = selectedRegion.textContent.trim();
+            currencyDisplay.textContent = currencyMap[regionSelect.value];
+        });
+    
+        closeButton.addEventListener('click', () => {
+            settingsModal.style.display = 'none';
+        });
+    
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === settingsModal) {
+                settingsModal.style.display = 'none';
+            }
+            if (event.target === confirmationModal) {
+                confirmationModal.style.display = 'none';
+            }
+        });
+    
+        // Update currency display when region changes
+        regionSelect.addEventListener('change', (e) => {
+            const currency = currencyMap[e.target.value];
+            currencyDisplay.textContent = currency;
+        });
+    
+        // Handle save button click
+        saveButton.addEventListener('click', () => {
+            const newRegion = regionSelect.value;
+            const newCurrency = currencyMap[newRegion];
+            
+            // Update the location button text
+            selectedRegion.textContent = newRegion;
+            selectedCurrency.textContent = `(${newCurrency})`;
+            
+            // Hide settings modal
+            settingsModal.style.display = 'none';
+            
+            // Show confirmation modal
+            confirmationModal.style.display = 'block';
+            
+            // Hide confirmation modal after 2 seconds
+            setTimeout(() => {
+                confirmationModal.style.display = 'none';
+            }, 2000);
+        });
+    
+        // Initialize currency display
+        currencyDisplay.textContent = currencyMap[regionSelect.value];
+    });
+    </script>

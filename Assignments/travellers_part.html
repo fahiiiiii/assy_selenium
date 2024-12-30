@@ -1,0 +1,395 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+        .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 8px;
+        position: relative;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+        .traveler-counter {
+            font-family: Arial, sans-serif;
+            padding: 15px;
+            max-width: 400px;
+        }
+
+        .counter-section {
+            margin: 10px 0;
+        }
+
+        .counter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 5px 0;
+        }
+
+        .counter-label {
+            flex-grow: 1;
+            font-size: 14px;
+        }
+
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .counter-button {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .counter-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f5f5f5;
+        }
+
+        .counter-value {
+            min-width: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .counter-subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .summary {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="modal-content">
+        <div class="traveler-counter">
+            <div class="counter-section">
+                <div class="counter-row">
+                    <div class="counter-label">
+                        Adults
+                    </div>
+                    <div class="counter-controls">
+                        <button class="counter-button" onclick="decrementCount('adults')" id="adults-minus">−</button>
+                        <span class="counter-value" id="adults-count">1</span>
+                        <button class="counter-button" onclick="incrementCount('adults')" id="adults-plus">+</button>
+                    </div>
+                </div>
+                
+                <div class="counter-row">
+                    <div class="counter-label">
+                        Children
+                        <div class="counter-subtitle">Ages 0 to 17</div>
+                    </div>
+                    <div class="counter-controls">
+                        <button class="counter-button" onclick="decrementCount('children')" id="children-minus" disabled>−</button>
+                        <span class="counter-value" id="children-count">0</span>
+                        <button class="counter-button" onclick="incrementCount('children')" id="children-plus">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary">
+                <span id="total-travelers">1 traveler</span>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+ 
+        const state = {
+            adults: 1,
+            children: 0,
+            maxTotal: 10,
+            minAdults: 1
+        };
+
+        function updateButtonStates() {
+            // Adults buttons
+            document.getElementById('adults-minus').disabled = state.adults <= state.minAdults;
+            document.getElementById('adults-plus').disabled = 
+                state.adults + state.children >= state.maxTotal;
+
+            // Children buttons
+            document.getElementById('children-minus').disabled = state.children <= 0;
+            document.getElementById('children-plus').disabled = 
+                state.adults + state.children >= state.maxTotal;
+
+            // Update counts
+            document.getElementById('adults-count').textContent = state.adults;
+            document.getElementById('children-count').textContent = state.children;
+
+            // Update total summary
+            const total = state.adults + state.children;
+            document.getElementById('total-travelers').textContent = 
+                `${total} ${total === 1 ? 'traveler' : 'travelers'}`;
+        }
+
+        function incrementCount(type) {
+            if (state.adults + state.children < state.maxTotal) {
+                state[type]++;
+                updateButtonStates();
+            }
+        }
+
+        function decrementCount(type) {
+            if (type === 'adults' && state.adults > state.minAdults) {
+                state.adults--;
+                updateButtonStates();
+            } else if (type === 'children' && state.children > 0) {
+                state.children--;
+                updateButtonStates();
+            }
+        }
+
+        // Initial update
+        updateButtonStates();
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .traveler-counter {
+            font-family: Arial, sans-serif;
+            padding: 15px;
+            max-width: 400px;
+        }
+
+        .counter-section {
+            margin: 10px 0;
+        }
+
+        .counter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 5px 0;
+        }
+
+        .counter-label {
+            flex-grow: 1;
+            font-size: 14px;
+        }
+
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .counter-button {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .counter-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f5f5f5;
+        }
+
+        .counter-value {
+            min-width: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .counter-subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .summary {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .trv {
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .trv.num {
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="traveler-counter">
+        <div class="counter-section">
+            <div class="counter-row">
+                <div class="counter-label">
+                    Travelers
+                </div>
+                <div class="counter-controls">
+                    <button class="counter-button" onclick="decrementCount('travelers')" id="travelers-minus">−</button>
+                    <span class="counter-value" id="travelers-count">2</span>
+                    <button class="counter-button" onclick="incrementCount('travelers')" id="travelers-plus">+</button>
+                </div>
+            </div>
+            
+            <div class="counter-row">
+                <div class="counter-label">
+                    Adults
+                    <div class="counter-subtitle">Ages 18 and up</div>
+                </div>
+                <div class="counter-controls">
+                    <button class="counter-button" onclick="decrementCount('adults')" id="adults-minus">−</button>
+                    <span class="counter-value" id="adults-count">1</span>
+                    <button class="counter-button" onclick="incrementCount('adults')" id="adults-plus">+</button>
+                </div>
+            </div>
+
+            <div class="counter-row">
+                <div class="counter-label">
+                    Children
+                    <div class="counter-subtitle">Ages 0 to 17</div>
+                </div>
+                <div class="counter-controls">
+                    <button class="counter-button" onclick="decrementCount('children')" id="children-minus" disabled>−</button>
+                    <span class="counter-value" id="children-count">0</span>
+                    <button class="counter-button" onclick="incrementCount('children')" id="children-plus">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <span class="trv num" onclick="toggleTravelerInput()">2 travelers</span>
+        </div>
+
+        <div class="trv-input" style="display: none;">
+            <div class="counter-row">
+                <div class="counter-label">
+                    Travelers
+                </div>
+                <div class="counter-controls">
+                    <button class="counter-button" onclick="decrementCount('travelers')" id="travelers-minus">−</button>
+                    <span class="counter-value" id="travelers-count">2</span>
+                    <button class="counter-button" onclick="incrementCount('travelers')" id="travelers-plus">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const state = {
+            adults: 1,
+            children: 0,
+            travelers: 2,
+            maxTotal: 10,
+            minTravelers: 1
+        };
+
+        function updateButtonStates() {
+            // Travelers buttons
+            document.getElementById('travelers-minus').disabled = state.travelers <= state.minTravelers;
+            document.getElementById('travelers-plus').disabled = 
+                state.travelers >= state.maxTotal;
+
+            // Adults buttons
+            document.getElementById('adults-minus').disabled = state.adults <= 1;
+            document.getElementById('adults-plus').disabled = 
+                state.adults + state.children >= state.travelers;
+
+            // Children buttons
+            document.getElementById('children-minus').disabled = state.children <= 0;
+            document.getElementById('children-plus').disabled = 
+                state.adults + state.children >= state.travelers;
+
+            // Update counts
+            document.getElementById('travelers-count').textContent = state.travelers;
+            document.getElementById('adults-count').textContent = state.adults;
+            document.getElementById('children-count').textContent = state.children;
+
+            // Update total summary
+            document.querySelector('.trv.num').textContent = 
+                `${state.travelers} ${state.travelers === 1 ? 'traveler' : 'travelers'}`;
+        }
+
+        function incrementCount(type) {
+            if (type === 'travelers' && state.travelers < state.maxTotal) {
+                state.travelers++;
+                updateButtonStates();
+            } else if (type === 'adults' && state.adults + state.children < state.travelers) {
+                state.adults++;
+                updateButtonStates();
+            } else if (type === 'children' && state.adults + state.children < state.travelers) {
+                state.children++;
+                updateButtonStates();
+            }
+        }
+
+        function decrementCount(type) {
+            if (type === 'travelers' && state.travelers > state.minTravelers) {
+                state.travelers--;
+                updateButtonStates();
+            } else if (type === 'adults' && state.adults > 1) {
+                state.adults--;
+                updateButtonStates();
+            } else if (type === 'children' && state.children > 0) {
+                state.children--;
+                updateButtonStates();
+            }
+        }
+
+        function toggleTravelerInput() {
+            document.querySelector('.trv-input').style.display =
+                document.querySelector('.trv-input').style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Initial update
+        updateButtonStates();
+    </script>
+</body>
+</html>

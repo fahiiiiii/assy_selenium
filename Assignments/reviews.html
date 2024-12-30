@@ -1,0 +1,413 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cottage Reviews</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        /* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.rating-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.rating {
+  font-size: 32px;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.reviews-container {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+}
+
+.review-item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-right: 20px;
+}
+
+.review-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review-date {
+  color: #888;
+  font-size: 14px;
+}
+
+.see-all-link {
+  text-align: center;
+}
+
+.see-all-link a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.see-all-link a:hover {
+  text-decoration: underline;
+}
+    </style>
+  <div class="container">
+    <div class="rating-info">
+      <div class="rating">9.8/10</div>
+      <div class="label">Exceptional</div>
+      <div class="reviews-count">24 reviews</div>
+    </div>
+
+    <div class="reviews-container">
+      <div class="review-item">
+        <div class="review-text">A very cozy home for the two of us in a quiet area.NY of town. Beautiful water view. We enjoyed the art, read up in it and visited the area more.</div>
+        <div class="reviewer-name">Kyle G.</div>
+        <div class="review-date">May 26, 2024</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-text">The cottage was just as the pictures and description stated. Nice quiet area and great view of the cove.</div>
+        <div class="reviewer-name">Cindy B.</div>
+        <div class="review-date">Sep 24, 2024</div>
+      </div>
+    </div>
+
+    <div class="see-all-link">
+      <a href="#">See all 24 reviews</a>
+    </div>
+  </div>
+</body>
+</html> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.review-section {
+    width: 60%;
+    max-width: 800px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating {
+    width: 30%;
+    text-align: left;
+    color: #2e7d32;
+}
+
+.rating h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.rating p {
+    margin: 5px 0;
+}
+
+.reviews-slider {
+    width: 60%;
+    position: relative;
+    overflow: hidden;
+}
+
+.review {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: none;
+}
+
+#review1:checked ~ #slide1,
+#review2:checked ~ #slide2 {
+    display: block;
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.controls label {
+    font-size: 24px;
+    cursor: pointer;
+    color: #007bff;
+    padding: 0 15px;
+}
+
+.view-all {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.view-all a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    </style>
+    <div class="review-section">
+        <div class="rating">
+            <h1>9.8/10</h1>
+            <p>Exceptional</p>
+            <p>24 reviews</p>
+            <p>Reviews are verified unless labeled otherwise.</p>
+        </div>
+
+        <div class="reviews-slider">
+            <input type="radio" name="slider" id="review1" checked>
+            <input type="radio" name="slider" id="review2">
+
+            <div class="review" id="slide1">
+                <h3>10/10 Excellent</h3>
+                <p>A very cozy home for the two of us in a quiet area NW of town. Beautiful water view...</p>
+                <p><strong>Kyle G.</strong><br>Sep 25, 2024</p>
+            </div>
+            <div class="review" id="slide2">
+                <h3>10/10 Excellent</h3>
+                <p>The cottage was just as the pictures and description stated. Nice quiet area and great view of the cove.</p>
+                <p><strong>Cindy B.</strong><br>Sep 23, 2024</p>
+            </div>
+
+            <div class="controls">
+                <label for="review1">&#10094;</label>
+                <label for="review2">&#10095;</label>
+            </div>
+        </div>
+
+        <div class="view-all">
+            <a href="#">See all 24 reviews &#8594;</a>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.review-section {
+    width: 60%;
+    max-width: 800px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating {
+    width: 30%;
+    text-align: left;
+    color: #2e7d32;
+}
+
+.rating h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.rating p {
+    margin: 5px 0;
+}
+
+.reviews-slider {
+    width: 60%;
+    position: relative;
+    overflow: hidden;
+}
+
+.review {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: none;
+}
+
+#review1:checked ~ #slide1,
+#review2:checked ~ #slide2,
+#review3:checked ~ #slide3,
+#review4:checked ~ #slide4,
+#review5:checked ~ #slide5 {
+    display: block;
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.controls label {
+    font-size: 24px;
+    cursor: pointer;
+    color: #007bff;
+    padding: 0 15px;
+}
+
+.view-all {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.view-all a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    </style>
+    <div class="review-section">
+        <div class="rating">
+            <h1>9.8/10</h1>
+            <p>Exceptional</p>
+            <p>24 reviews</p>
+            <p>Reviews are verified unless labeled otherwise.</p>
+        </div>
+
+        <div class="reviews-slider">
+            <!-- Radio buttons for each review -->
+            <input type="radio" name="slider" id="review1" checked>
+            <input type="radio" name="slider" id="review2">
+            <input type="radio" name="slider" id="review3">
+            <input type="radio" name="slider" id="review4">
+            <input type="radio" name="slider" id="review5">
+
+            <!-- Review content -->
+            <div class="review" id="slide1">
+                <h3>10/10 Excellent</h3>
+                <p>A very cozy home for the two of us in a quiet area NW of town. Beautiful water view...</p>
+                <p><strong>Kyle G.</strong><br>Sep 25, 2024</p>
+            </div>
+            <div class="review" id="slide2">
+                <h3>10/10 Excellent</h3>
+                <p>The cottage was just as the pictures and description stated. Nice quiet area and great view of the cove.</p>
+                <p><strong>Cindy B.</strong><br>Sep 23, 2024</p>
+            </div>
+            <div class="review" id="slide3">
+                <h3>9/10 Wonderful</h3>
+                <p>Great location and very comfortable stay. Loved the outdoor activities nearby!</p>
+                <p><strong>Jordan T.</strong><br>Aug 18, 2024</p>
+            </div>
+            <div class="review" id="slide4">
+                <h3>9.5/10 Amazing</h3>
+                <p>Perfect getaway spot with all necessary amenities. The host was very accommodating.</p>
+                <p><strong>Amelia R.</strong><br>Jul 20, 2024</p>
+            </div>
+            <div class="review" id="slide5">
+                <h3>10/10 Excellent</h3>
+                <p>Beautiful views and quiet surroundings, ideal for relaxation. Would definitely visit again!</p>
+                <p><strong>Chris P.</strong><br>Jul 5, 2024</p>
+            </div>
+
+            <!-- Navigation controls -->
+            <div class="controls">
+                <label for="review1">&#10094;</label>
+                <label for="review2">&#10095;</label>
+                <label for="review3">&#10095;</label>
+                <label for="review4">&#10095;</label>
+                <label for="review5">&#10095;</label>
+            </div>
+        </div>
+
+        <div class="view-all">
+            <a href="#">See all 24 reviews &#8594;</a>
+        </div>
+    </div>
+</body>
+</html>

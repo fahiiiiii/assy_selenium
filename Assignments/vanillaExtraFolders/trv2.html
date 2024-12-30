@@ -1,0 +1,273 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travelers</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+     .booking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.travelers-input {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.travelers-dropdown {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  width: 200px;
+  z-index: 1;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.counter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.counter-controls button {
+  background-color: #f2f2f2;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.counter-controls .counter-value {
+  margin: 0 10px;
+}
+
+.done-btn {
+  display: block;
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+    </style>
+  <div class="booking-container">
+    <div class="travelers-input">
+      <small class="trv">Travelers</small>
+      <div class="trv num" onclick="toggleTravelerInput()">2 travelers</div>
+    </div>
+    <div class="travelers-dropdown hidden">
+      <div class="counter-row">
+        <div class="counter-label">Adults</div>
+        <div class="counter-controls">
+          <button class="decrement">-</button>
+          <span class="counter-value" id="adults-count">1</span>
+          <button class="increment">+</button>
+        </div>
+      </div>
+      <div class="counter-row">
+        <div class="counter-label">Children</div>
+        <div class="counter-controls">
+          <button class="decrement">-</button>
+          <span class="counter-value" id="children-count">0</span>
+          <button class="increment">+</button>
+        </div>
+      </div>
+      <button class="done-btn">Done</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travelers</title>
+  <style>
+    /* CSS styles remain the same as before */
+    .traveler-counter {
+            font-family: Arial, sans-serif;
+            padding: 15px;
+            max-width: 400px;
+        }
+
+        .counter-section {
+            margin: 10px 0;
+        }
+
+        .counter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 5px 0;
+        }
+
+        .counter-label {
+            flex-grow: 1;
+            font-size: 14px;
+        }
+
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .counter-button {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* .counter-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f5f5f5;
+        } */
+
+        .counter-value {
+            min-width: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .counter-subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .summary {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .trv {
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .trv.num {
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: #e9ecef;
+        }
+  </style>
+</head>
+<body>
+  <div class="booking-container">
+    <div class="travelers-input">
+      <small class="trv">Travelers</small>
+      <div class="trv num" onclick="toggleTravelerInput()">2 travelers</div>
+    </div>
+    <div class="travelers-dropdown hidden">
+      <div class="counter-row">
+        <div class="counter-label">
+            Adults
+            <div class="counter-subtitle">Ages 18 and up</div>
+        </div>
+        <div class="counter-controls">
+          <button class="decrement" onclick="decrementAdults()">-</button>
+          <span class="counter-value" id="adults-count">1</span>
+          <button class="increment" onclick="incrementAdults()">+</button>
+        </div>
+      </div>
+      <div class="counter-row">
+        <div class="counter-label">
+        Children
+        <div class="counter-subtitle">Ages 0 to 17</div>
+    </div>
+        <div class="counter-controls">
+            <button class="counter-button" onclick="decrementCount('travelers')" id="travelers-minus">-</button>
+            <span class="counter-value" id="travelers-count">2</span>
+            <button class="counter-button" onclick="incrementCount('travelers')" id="travelers-plus">+</button>
+        
+        </div>
+      </div>
+      <button class="done-btn" onclick="updateTravelerDisplay()">Done</button>
+    </div>
+  </div>
+
+  <script>
+    let adultCount = 1;
+    let childCount = 0;
+
+    function toggleTravelerInput() {
+      document.querySelector('.travelers-dropdown').classList.toggle('hidden');
+    }
+
+    function incrementAdults() {
+      adultCount++;
+      updateAdultCount();
+    }
+
+    function decrementAdults() {
+      if (adultCount > 1) {
+        adultCount--;
+        updateAdultCount();
+      }
+    }
+
+    function incrementChildren() {
+      childCount++;
+      updateChildCount();
+    }
+
+    function decrementChildren() {
+      if (childCount > 0) {
+        childCount--;
+        updateChildCount();
+      }
+    }
+
+    function updateAdultCount() {
+      document.getElementById('adults-count').textContent = adultCount;
+    }
+
+    function updateChildCount() {
+      document.getElementById('children-count').textContent = childCount;
+    }
+
+    function updateTravelerDisplay() {
+      const travelersDisplay = document.querySelector('.trv.num');
+      travelersDisplay.textContent = `${adultCount + childCount} travelers`;
+      document.querySelector('.travelers-dropdown').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

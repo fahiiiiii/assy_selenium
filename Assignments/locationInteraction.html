@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- HTML -->
+<div class="location-selector" id="locationButton">
+    <span>🌐</span>
+    <span id="selectedRegion">United States</span>
+</div>
+
+<!-- Modal -->
+<div id="settingsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Display settings</h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="warning-message">
+                <p>Changing your region could change your rewards program</p>
+                <p class="subtitle">To stay with your current rewards program keep your region the same. One Key is currently only available in select regions.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="regionSelect">Region</label>
+                <select id="regionSelect">
+                    <option value="US">United States</option>
+                    <option value="PT">Portugal</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="FR">France</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="currencySelect">Currency</label>
+                <select id="currencySelect" disabled>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                </select>
+            </div>
+            
+            <button id="saveButton" class="save-button">Save</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.location-selector {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.location-selector:hover {
+    background-color: #f5f5f5;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.warning-message {
+    margin-bottom: 20px;
+}
+
+.warning-message p {
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.warning-message .subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.save-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #0052cc;
+}
+</style>
+
+<script>
+// Map of regions to their currencies
+const regionCurrencyMap = {
+    'US': 'USD',
+    'PT': 'EUR',
+    'UK': 'GBP',
+    'FR': 'EUR'
+};
+
+// Get DOM elements
+const locationButton = document.getElementById('locationButton');
+const modal = document.getElementById('settingsModal');
+const closeButton = document.querySelector('.close');
+const saveButton = document.getElementById('saveButton');
+const regionSelect = document.getElementById('regionSelect');
+const currencySelect = document.getElementById('currencySelect');
+const selectedRegionSpan = document.getElementById('selectedRegion');
+
+// Show modal when location button is clicked
+locationButton.onclick = function() {
+    modal.style.display = 'block';
+}
+
+// Close modal when X is clicked
+closeButton.onclick = function() {
+    modal.style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Update currency when region changes
+regionSelect.onchange = function() {
+    const selectedRegion = regionSelect.value;
+    const currency = regionCurrencyMap[selectedRegion];
+    currencySelect.value = currency;
+}
+
+// Save changes
+saveButton.onclick = function() {
+    const selectedRegion = regionSelect.options[regionSelect.selectedIndex].text;
+    selectedRegionSpan.textContent = selectedRegion;
+    modal.style.display = 'none';
+}
+
+// Initial setup
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial currency based on default region
+    const initialRegion = regionSelect.value;
+    currencySelect.value = regionCurrencyMap[initialRegion];
+});
+</script>
+</body>
+</html>

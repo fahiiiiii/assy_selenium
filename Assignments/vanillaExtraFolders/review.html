@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .review-section {
+            width: 60%;
+            max-width: 800px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .reviews-slider {
+            width: 60%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .review {
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #1A1A1D;
+            position: absolute;
+            left: 100%;
+            opacity: 0;
+            transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+        
+        .review.active {
+            left: 0;
+            opacity: 1;
+        }
+        
+        .review h3,
+        .review p,
+        .review p strong {
+            background: none;
+        }
+        
+        .controls {
+            position: absolute;
+            top: 95%;
+            bottom: 0px;
+            display: flex;
+            gap: 100%;
+            height: 15px;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            background: none;
+            padding: 0 5px;
+        }
+        
+        .controls label {
+            font-size: 10px;
+            cursor: pointer;
+            color: #e1e1f0;
+            border-radius: 50%;
+            background: #807e7e;
+            opacity: 0.4;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .controls label:hover {
+            opacity: 1;
+        }
+        
+        .controls label:first-child {
+            margin-right: auto;
+        }
+        
+        .controls label:last-child {
+            margin-left: auto;
+        }
+        
+        .view-all {
+            margin-top: 15px;
+            margin-left: 0;
+        }
+        
+        .view-all a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 0;
+            padding-left: 0;
+        }
+        
+        .view-and-slider {
+            display: flex;
+            flex-direction: column;
+        }
+        </style>
+        
+        <div class="view-and-slider">
+            <div class="reviews-slider">
+                <!-- Radio buttons for each review -->
+                <input type="radio" name="slider" id="review1" checked>
+                <input type="radio" name="slider" id="review2">
+                <input type="radio" name="slider" id="review3">
+                <input type="radio" name="slider" id="review4">
+                <input type="radio" name="slider" id="review5">
+        
+                <!-- Review content -->
+                <div class="review active" id="slide1">
+                    <h3>10/10 Excellent</h3>
+                    <p>A very cozy home for the two of us in a quiet area NW of town. Beautiful water view...</p>
+                    <p><strong>Kyle G.</strong><br>Sep 25, 2024</p>
+                </div>
+                <div class="review" id="slide2">
+                    <h3>10/10 Excellent</h3>
+                    <p>The cottage was just as the pictures and description stated. Nice quiet area and great view of
+                        the cove.</p>
+                    <p><strong>Cindy B.</strong><br>Sep 23, 2024</p>
+                </div>
+                <div class="review" id="slide3">
+                    <h3>9/10 Wonderful</h3>
+                    <p>Great location and very comfortable stay. Loved the outdoor activities nearby!</p>
+                    <p><strong>Jordan T.</strong><br>Aug 18, 2024</p>
+                </div>
+                <div class="review" id="slide4">
+                    <h3>9.5/10 Amazing</h3>
+                    <p>Perfect getaway spot with all necessary amenities. The host was very accommodating.</p>
+                    <p><strong>Amelia R.</strong><br>Jul 20, 2024</p>
+                </div>
+                <div class="review" id="slide5">
+                    <h3>10/10 Excellent</h3>
+                    <p>Beautiful views and quiet surroundings, ideal for relaxation. Would definitely visit again!</p>
+                    <p><strong>Chris P.</strong><br>Jul 5, 2024</p>
+                </div>
+        
+                <!-- Navigation controls -->
+                <div class="controls">
+                    <label for="review1" class="lbl-arrow">&#10094;</label>
+                    <label for="review2" class="lbl-arrow">&#10095;</label>
+                    <label for="review3" class="lbl-arrow">&#10095;</label>
+                    <label for="review4" class="lbl-arrow">&#10095;</label>
+                    <label for="review5" class="lbl-arrow">&#10095;</label>
+                </div>
+            </div>
+        
+            <div class="view-all">
+                <a href="#">See all 24 reviews &#8594;</a>
+            </div>
+        </div>
+</body>
+</html>
