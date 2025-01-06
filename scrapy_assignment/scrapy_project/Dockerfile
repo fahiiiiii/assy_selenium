@@ -18,7 +18,14 @@ COPY requirements.txt ./
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+
+# -0-----------------
+# Install Playwright browsers
+# RUN pip install playwright && \
+#     playwright install chromium
+    # ------------
 # Copy the Scrapy project
+
 COPY . ./
 
 # Set the entrypoint to run Scrapy

@@ -1,4 +1,35 @@
-scrapy
-sqlalchemy
+# scrapy
+# sqlalchemy
+# psycopg2-binary
+# Pillow
+# scrapy-splash
+# # six==1.16.0
+# scrapy-playwright==0.0.26
+
+scrapy>=2.5.0
+SQLAlchemy>=1.4.0
+twisted==21.2.0
+scrapy-playwright>=0.0.0  # If using Playwright for rendering
+Pillow>=8.0.0  # For image handling
+
+
+scrapy-splash
+six
+twisted
+pyOpenSSL
+# playwright
+parsel
+lxml
+cssselect
+w3lib
+
+
+# Database (if needed)
 psycopg2-binary
-Pillow
+
+# Utility Libraries
+python-dateutil
+attrs
+service-identity
+requests>=2.31.0
+python-dotenv>=1.0.0

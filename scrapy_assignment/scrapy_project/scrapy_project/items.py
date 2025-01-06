@@ -1,8 +1,6 @@
-# scrapy_project/items.py
 import scrapy
 
 class PropertyItem(scrapy.Item):
-    
     title = scrapy.Field()
     rating = scrapy.Field()
     location = scrapy.Field()
@@ -10,10 +8,8 @@ class PropertyItem(scrapy.Item):
     longitude = scrapy.Field()
     room_type = scrapy.Field()
     price = scrapy.Field()
-    images = scrapy.Field()
-    image_urls = scrapy.Field()
-
-
+    images = scrapy.Field()      # Field to store actual image data or paths
+    image_urls = scrapy.Field()  # Field to store URLs of images
 
 
 # # Define here the models for your scraped items
