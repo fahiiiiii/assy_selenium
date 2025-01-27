@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rental View</title>
+	<link rel="stylesheet" href="/static/css/rental_view.css">
+</head>
+<body>
+	<header>
+		<div class="search-box">
+			<input type="text" placeholder="Search locations">
+			<button>Search</button>
+		</div>
+		<div class="breadcrumb">
+			<a href="#">Home</a> > <span>Rental Properties</span>
+		</div>
+	</header>
+
+	<main>
+		<section class="property-tiles">
+			{{ range .Properties }}
+			<div class="property-tile">
+				<img src="{{ .ImageUrl }}" alt="{{ .Name }}">
+				<h3>{{ .Name }}</h3>
+				<p>{{ .Description }}</p>
+				<p>Price: ${{ .Price }}</p>
+				<a href="/availability?id={{ .ID }}">View Availability</a>
+			</div>
+			{{ end }}
+		</section>
+	</main>
+
+	<footer>
+		<p>&copy; 2023 Rental View. All rights reserved.</p>
+	</footer>
+
+	<script src="/static/js/rental_view.js"></script>
+</body>
+</html>
